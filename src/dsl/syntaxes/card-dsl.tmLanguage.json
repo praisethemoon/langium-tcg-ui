@@ -1,0 +1,81 @@
+{
+  "name": "card-dsl",
+  "scopeName": "source.card-dsl",
+  "fileTypes": [
+    ".card"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "name": "keyword.control.card-dsl",
+      "match": "\\b([aA][bB][iI][lL][iI][tT][iI][eE][sS]|[aA][bB][iI][lL][iI][tT][yY]|[aA][cC][tT][iI][vV][aA][tT][eE]|[aA][cC][tT][iI][vV][eE]|[aA][nN][dD]|[aA][rR][tT][wW][oO][rR][kK]|[aA][tT][tT][aA][cC][kK]|[aA][tT][tT][aA][cC][kK][iI][nN][gG]|[aA][uU][tT][oO]|[bB][aA][tT][tT][lL][eE][fF][iI][eE][lL][dD]|[bB][eE][aA][sS][tT]|[bB][yY]|[cC][aA][nN][cC][eE][lL]|[cC][aA][rR][dD][sS]|[cC][aA][tT][eE][gG][oO][rR][yY]|[cC][hH][aA][nN][gG][eE]|[cC][oO][iI][nN]|[cC][oO][nN][sS][tT][rR][uU][cC][tT]|[dD][aA][mM][aA][gG][eE][dD]|[dD][aA][rR][kK]|[dD][eE][aA][tT][hH]|[dD][eE][cC][kK]|[dD][eE][mM][oO][nN]|[dD][eE][sS][cC][rR][iI][pP][tT][iI][oO][nN]|[dD][eE][sS][tT][rR][oO][yY]|[dD][iI][sS][cC][aA][rR][dD]|[dD][iI][vV][iI][nN][eE]|[dD][rR][aA][gG][oO][nN]|[dD][rR][aA][wW]|[eE][aA][rR][tT][hH]|[eE][fF][fF][eE][cC][tT]|[eE][qQ][uU][aA][lL]|[fF][iI][rR][eE]|[fF][lL][iI][pP]|[fF][oO][rR]|[fF][rR][oO][mM]|[gG][aA][iI][nN]|[gG][rR][aA][vV][eE][yY][aA][rR][dD]|[hH][aA][nN][dD]|[hH][eE][aA][lL]|[hH][eE][aA][lL][eE][dD]|[hH][pP]|[iI][dD]|[iI][nN][cC][rR][eE][aA][sS][eE]|[lL][iI][fF][eE]|[lL][iI][gG][hH][tT]|[lL][iI][mM][iI][tT]|[lL][oO][oO][sS][eE]|[mM][oO][nN][sS][tT][eE][rR]|[nN][aA][mM][eE]|[oO][fF]|[oO][nN]|[oO][pP][pP][oO][nN][eE][nN][tT]|[oO][pP][pP][oO][nN][eE][nN][tT][sS]|[oO][rR]|[pP][aA][sS][sS][iI][vV][eE]|[sS][eE][lL][eE][cC][tT]|[sS][pP][eE][cC][tT][rR][aA][lL]|[sS][pP][eE][lL][lL]|[sS][pP][eE][lL][lL][cC][aA][sS][tT][eE][rR]|[sS][pP][iI][rR][iI][tT]|[sS][tT][aA][rR][sS]|[sS][uU][mM][mM][oO][nN]|[tT][aA][rR][gG][eE][tT]|[tT][hH][eE]|[tT][hH][iI][sS]|[tT][oO]|[tT][rR][aA][iI][tT][sS]|[tT][rR][aA][pP]|[tT][rR][iI][gG][gG][eE][rR]|[tT][yY][pP][eE]|[uU][nN][dD][eE][aA][dD]|[wW][aA][rR][rR][iI][oO][rR]|[wW][aA][tT][eE][rR]|[wW][eE][aA][kK][eE][nN]|[wW][hH][eE][rR][eE]|[wW][iI][nN][dD]|[yY][oO][uU][rR])\\b|\\B(\\[[eE][fF][fF][eE][cC][tT]\\])\\B"
+    },
+    {
+      "name": "string.quoted.double.card-dsl",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.card-dsl",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.card-dsl",
+          "begin": "/\\*",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.card-dsl"
+            }
+          },
+          "end": "\\*/",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.card-dsl"
+            }
+          }
+        },
+        {
+          "begin": "//",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.card-dsl"
+            }
+          },
+          "end": "(?=$)",
+          "name": "comment.line.card-dsl"
+        },
+        {
+          "begin": "#",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.card-dsl"
+            }
+          },
+          "end": "(?=$)",
+          "name": "comment.line.card-dsl"
+        }
+      ]
+    },
+    "string-character-escape": {
+      "name": "constant.character.escape.card-dsl",
+      "match": "\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\\{[0-9A-Fa-f]+\\}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.|$)"
+    }
+  }
+}

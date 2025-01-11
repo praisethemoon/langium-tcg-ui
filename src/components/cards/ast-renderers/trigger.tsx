@@ -1,0 +1,100 @@
+import { TriggerEvent, VariableDecl } from "../../../dsl/language/generated/ast";
+import { ConditionComponent } from "./condition";
+import { Var } from "./variable";
+
+type TriggerComponentProps = {
+    trigger: TriggerEvent;
+    variables: { [key: string]: VariableDecl | undefined };
+};
+
+const getTriggerText = (trigger: TriggerEvent) => {
+    let triggerCommand = ""
+    switch (trigger.trigger) {
+        case "summon":
+            triggerCommand = "Summon";
+            break;
+        case "death":
+            triggerCommand = "Death";
+            break;
+        case "attack":
+            triggerCommand = "Attack";
+            break;
+        case "healed":
+            triggerCommand = "Healed";
+            break;
+        case "draw":
+            triggerCommand = "DrawCard";
+            break;
+        case "discard":
+            triggerCommand = "DiscardCard";
+            break;
+        case "activate":
+            triggerCommand = "ActivateEffect";
+            break;
+    }
+
+    if(trigger.isOpponent){
+        return "onOpponent" + triggerCommand;
+    }
+
+    return "on" + triggerCommand;
+};
+
+
+const triggerView = (trigger: TriggerEvent, variables: { [key: string]: VariableDecl | undefined }) => {
+    const triggerText = getTriggerText(trigger);
+    
+    // on summon, death, attack, damaged, healed, they all require a target
+    if (trigger.target != null) {
+        variables["target"] = trigger.target;
+
+        if(trigger.attacked != null){
+            variables["attacked"] = trigger.attacked;
+        }
+
+        return (
+            <>
+                <p className="font-mono text-sm bg-slate-50 rounded p-1.5 border border-slate-200 w-full p-1">
+                    <span className="text-purple-600">{triggerText}</span>
+                    <span className="text-slate-600">(</span>
+                    <span className="text-slate-500">eventSource=</span>
+                    <Var>{trigger.target.name}</Var>
+                    {trigger.attacked != null && (
+                        <>
+                            <span className="text-slate-500">,</span>
+                            <span className="text-slate-500">attacked=</span>
+                            <Var>{trigger.attacked.name}</Var>
+                        </>
+                    )}
+                    <span className="text-slate-600">)</span>
+                </p>
+            </>
+        );
+    }
+
+    // on activate, requires an effect source
+    if(trigger.activatedEntity != null){
+        return (
+            <p className="font-mono text-sm bg-slate-50 rounded p-1.5 border border-slate-200 w-full p-1">
+                <span className="text-purple-600">{triggerText}</span>
+                <span className="text-slate-600">(</span>
+                <span className="text-slate-500">effectSource=</span>
+                <Var className="bg-red-50">{trigger.activatedEntity}</Var>
+                <span className="text-slate-600">)</span>
+            </p>
+        );
+    }
+
+    return <p className="font-mono text-sm text-purple-600">{triggerText}()</p>;
+};
+
+export const TriggerComponent: React.FC<TriggerComponentProps> = ({ trigger, variables }) => {
+    return (
+        <div className="font-mono text-sm bg-slate-50 rounded p-1.5 border border-slate-200 w-full">
+            {triggerView(trigger, variables)}
+            {trigger.condition != null && (
+                <ConditionComponent condition={trigger.condition} variables={variables} />
+            )}
+        </div>
+    )
+};
