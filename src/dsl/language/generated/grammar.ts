@@ -108,7 +108,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@37"
+                "$ref": "#/rules@42"
               },
               "arguments": []
             }
@@ -128,7 +128,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@36"
+                "$ref": "#/rules@41"
               },
               "arguments": []
             }
@@ -188,7 +188,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@37"
+                "$ref": "#/rules@42"
               },
               "arguments": []
             }
@@ -211,7 +211,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@36"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -414,7 +414,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@36"
+                "$ref": "#/rules@41"
               },
               "arguments": []
             }
@@ -434,7 +434,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@36"
+                "$ref": "#/rules@41"
               },
               "arguments": []
             }
@@ -454,7 +454,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@36"
+                "$ref": "#/rules@41"
               },
               "arguments": []
             }
@@ -474,7 +474,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@37"
+                "$ref": "#/rules@42"
               },
               "arguments": []
             }
@@ -493,7 +493,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@31"
+                  "$ref": "#/rules@36"
                 },
                 "arguments": []
               },
@@ -513,7 +513,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@32"
+                  "$ref": "#/rules@37"
                 },
                 "arguments": []
               }
@@ -550,7 +550,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@37"
+                "$ref": "#/rules@42"
               },
               "arguments": []
             }
@@ -566,7 +566,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@31"
+              "$ref": "#/rules@36"
             },
             "arguments": []
           },
@@ -589,7 +589,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@32"
+              "$ref": "#/rules@37"
             },
             "arguments": []
           }
@@ -623,7 +623,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@37"
+                "$ref": "#/rules@42"
               },
               "arguments": []
             }
@@ -659,7 +659,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@31"
+              "$ref": "#/rules@36"
             },
             "arguments": []
           },
@@ -682,7 +682,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@32"
+              "$ref": "#/rules@37"
             },
             "arguments": []
           }
@@ -723,7 +723,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@37"
+                "$ref": "#/rules@42"
               },
               "arguments": []
             }
@@ -735,7 +735,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@31"
+              "$ref": "#/rules@36"
             },
             "arguments": []
           },
@@ -758,7 +758,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@32"
+              "$ref": "#/rules@37"
             },
             "arguments": []
           }
@@ -899,7 +899,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@37"
+                "$ref": "#/rules@42"
               },
               "arguments": []
             }
@@ -993,7 +993,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@35"
               },
               "arguments": []
             }
@@ -1083,7 +1083,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@35"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -1155,7 +1155,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@35"
+                  "$ref": "#/rules@40"
                 },
                 "arguments": []
               },
@@ -1176,7 +1176,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@36"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -1281,7 +1281,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@36"
+                "$ref": "#/rules@41"
               },
               "arguments": []
             }
@@ -1314,8 +1314,13 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                 }
               },
               {
-                "$type": "Keyword",
-                "value": "effect"
+                "$type": "Assignment",
+                "feature": "cancel",
+                "operator": "=",
+                "terminal": {
+                  "$type": "Keyword",
+                  "value": "effect"
+                }
               }
             ]
           },
@@ -1332,8 +1337,13 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                 }
               },
               {
-                "$type": "Keyword",
-                "value": "attack"
+                "$type": "Assignment",
+                "feature": "cancel",
+                "operator": "=",
+                "terminal": {
+                  "$type": "Keyword",
+                  "value": "attack"
+                }
               }
             ]
           },
@@ -1456,7 +1466,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                 "operator": "=",
                 "terminal": {
                   "$type": "Keyword",
-                  "value": "weaken"
+                  "value": "decrease"
                 }
               },
               {
@@ -1557,36 +1567,6 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                   "$type": "RuleCall",
                   "rule": {
                     "$ref": "#/rules@17"
-                  },
-                  "arguments": []
-                }
-              }
-            ]
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "action",
-                "operator": "=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "heal"
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "for"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "amount",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@22"
                   },
                   "arguments": []
                 }
@@ -1727,7 +1707,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@36"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -2659,7 +2639,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@36"
+                  "$ref": "#/rules@30"
                 },
                 "arguments": []
               },
@@ -2680,7 +2660,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@4"
+                  "$ref": "#/rules@31"
                 },
                 "arguments": []
               },
@@ -2701,7 +2681,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@3"
+                  "$ref": "#/rules@32"
                 },
                 "arguments": []
               },
@@ -2722,7 +2702,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@5"
+                  "$ref": "#/rules@33"
                 },
                 "arguments": []
               },
@@ -2743,7 +2723,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@17"
+                  "$ref": "#/rules@34"
                 },
                 "arguments": []
               },
@@ -2751,7 +2731,7 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
                 "$type": "Action",
                 "inferredType": {
                   "$type": "InferredType",
-                  "name": "Variable"
+                  "name": "VariableExpression"
                 },
                 "feature": "value",
                 "operator": "="
@@ -2814,6 +2794,116 @@ export const CardDslGrammar = (): Grammar => loadedCardDslGrammar ?? (loadedCard
           "$ref": "#/rules@22"
         },
         "arguments": []
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "IntConstantExpr",
+      "definition": {
+        "$type": "Assignment",
+        "feature": "rawValue",
+        "operator": "=",
+        "terminal": {
+          "$type": "RuleCall",
+          "rule": {
+            "$ref": "#/rules@41"
+          },
+          "arguments": []
+        }
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "ElementCategoryConstantExpr",
+      "definition": {
+        "$type": "Assignment",
+        "feature": "rawValue",
+        "operator": "=",
+        "terminal": {
+          "$type": "RuleCall",
+          "rule": {
+            "$ref": "#/rules@4"
+          },
+          "arguments": []
+        }
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "CardTypeConstantExpr",
+      "definition": {
+        "$type": "Assignment",
+        "feature": "rawValue",
+        "operator": "=",
+        "terminal": {
+          "$type": "RuleCall",
+          "rule": {
+            "$ref": "#/rules@3"
+          },
+          "arguments": []
+        }
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "MonsterTraitConstantExpr",
+      "definition": {
+        "$type": "Assignment",
+        "feature": "rawValue",
+        "operator": "=",
+        "terminal": {
+          "$type": "RuleCall",
+          "rule": {
+            "$ref": "#/rules@5"
+          },
+          "arguments": []
+        }
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "VariableExpr",
+      "definition": {
+        "$type": "Assignment",
+        "feature": "rawValue",
+        "operator": "=",
+        "terminal": {
+          "$type": "RuleCall",
+          "rule": {
+            "$ref": "#/rules@17"
+          },
+          "arguments": []
+        }
       },
       "definesHiddenTokens": false,
       "entry": false,

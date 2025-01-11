@@ -1,9 +1,11 @@
 import { DocumentChange, Editor } from './components/Editor'
-import { BaseCard } from './dsl/language/generated/ast';
 import { useState } from 'react';
 import { DocumentState } from 'langium';
 import { QuestionableCard } from './components/cards/QuestionableCard';
 import { Card } from './components/cards/Card';
+import { Allotment } from "allotment";
+import "allotment/dist/style.css";
+import { BaseCard } from './dsl/language/generated/ast';
 
 function App() {
     const [cards, setCards] = useState<BaseCard[]>([]);
@@ -24,17 +26,19 @@ function App() {
 
     return (
         <div className="w-screen h-screen flex flex-row">
-            <div className="flex flex-col items-center justify-center h-[100%] w-[50%] border-r border-r-black-400">
+            <Allotment>
                 <Editor onLoad={(editor) => {
                     const lc = editor.getEditorWrapper()?.getLanguageClient();
                     if (!lc) throw new Error("Language client not found");
                     lc.onNotification("browser/DocumentChange", onChange);
                 }} style={{ width: "100%", height: "100%" }} />
-            </div>
-            <div className="flex flex-col items-center justify-center h-[100%] w-[50%]">
-                {!validated && <QuestionableCard />}
-                {validated && <Card card={cards[0]} />}
-            </div>
+                <Allotment vertical={true}>
+                    <div className="h-full w-full overflow-y-auto p-4">
+                        {!validated && <QuestionableCard />}
+                        {validated && <Card card={cards[0]} />}
+                    </div>
+                </Allotment>
+            </Allotment>
         </div>
     )
 }

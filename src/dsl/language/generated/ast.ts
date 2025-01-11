@@ -63,6 +63,7 @@ export type CardDslKeywordNames =
     | "dark"
     | "death"
     | "deck"
+    | "decrease"
     | "demon"
     | "description"
     | "destroy"
@@ -75,12 +76,10 @@ export type CardDslKeywordNames =
     | "equal"
     | "fire"
     | "flip"
-    | "for"
     | "from"
     | "gain"
     | "graveyard"
     | "hand"
-    | "heal"
     | "healed"
     | "hp"
     | "id"
@@ -115,7 +114,6 @@ export type CardDslKeywordNames =
     | "undead"
     | "warrior"
     | "water"
-    | "weaken"
     | "where"
     | "wind"
     | "your";
@@ -150,7 +148,7 @@ export function isElementCategory(item: unknown): item is ElementCategory {
     return item === 'dark' || item === 'light' || item === 'fire' || item === 'water' || item === 'earth' || item === 'wind';
 }
 
-export type Expr = BinExpr | CardTypeConstant | ElementCategoryConstant | IntConstant | MonsterTraitConstant | ThisConstant | Variable;
+export type Expr = BinExpr | CardTypeConstant | ElementCategoryConstant | IntConstant | IntConstantExpr | MonsterTraitConstant | ThisConstant | VariableExpression;
 
 export const Expr = 'Expr';
 
@@ -216,7 +214,7 @@ export function isBaseCard(item: unknown): item is BaseCard {
 }
 
 export interface BinExpr extends AstNode {
-    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent;
+    readonly $container: BinExpr | Effect | SelectStep | ThisConstant | TriggerEvent;
     readonly $type: 'BinExpr';
     left: Expr;
     op: '!=' | '*' | '+' | '-' | '/' | '<' | '<=' | '=' | '>' | '>=' | 'and' | 'or';
@@ -230,9 +228,9 @@ export function isBinExpr(item: unknown): item is BinExpr {
 }
 
 export interface CardTypeConstant extends AstNode {
-    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent;
+    readonly $container: BinExpr | Effect | SelectStep | ThisConstant | TriggerEvent;
     readonly $type: 'CardTypeConstant';
-    value: CardType;
+    value: CardTypeConstantExpr;
 }
 
 export const CardTypeConstant = 'CardTypeConstant';
@@ -241,11 +239,24 @@ export function isCardTypeConstant(item: unknown): item is CardTypeConstant {
     return reflection.isInstance(item, CardTypeConstant);
 }
 
+export interface CardTypeConstantExpr extends AstNode {
+    readonly $container: CardTypeConstant;
+    readonly $type: 'CardTypeConstantExpr';
+    rawValue: CardType;
+}
+
+export const CardTypeConstantExpr = 'CardTypeConstantExpr';
+
+export function isCardTypeConstantExpr(item: unknown): item is CardTypeConstantExpr {
+    return reflection.isInstance(item, CardTypeConstantExpr);
+}
+
 export interface Effect extends AstNode {
     readonly $container: EffectStep;
     readonly $type: 'Effect';
-    action: 'cancel' | 'change' | 'destroy' | 'discard' | 'draw' | 'gain' | 'heal' | 'increase' | 'loose' | 'summon' | 'weaken';
+    action: 'cancel' | 'change' | 'decrease' | 'destroy' | 'discard' | 'draw' | 'gain' | 'increase' | 'loose' | 'summon';
     amount?: Expr | number;
+    cancel?: 'attack' | 'effect';
     isOpponent: boolean;
     newTarget?: Variable;
     stat?: 'attack' | 'hp';
@@ -271,9 +282,9 @@ export function isEffectStep(item: unknown): item is EffectStep {
 }
 
 export interface ElementCategoryConstant extends AstNode {
-    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent;
+    readonly $container: BinExpr | Effect | SelectStep | ThisConstant | TriggerEvent;
     readonly $type: 'ElementCategoryConstant';
-    value: ElementCategory;
+    value: ElementCategoryConstantExpr;
 }
 
 export const ElementCategoryConstant = 'ElementCategoryConstant';
@@ -282,16 +293,40 @@ export function isElementCategoryConstant(item: unknown): item is ElementCategor
     return reflection.isInstance(item, ElementCategoryConstant);
 }
 
+export interface ElementCategoryConstantExpr extends AstNode {
+    readonly $container: ElementCategoryConstant;
+    readonly $type: 'ElementCategoryConstantExpr';
+    rawValue: ElementCategory;
+}
+
+export const ElementCategoryConstantExpr = 'ElementCategoryConstantExpr';
+
+export function isElementCategoryConstantExpr(item: unknown): item is ElementCategoryConstantExpr {
+    return reflection.isInstance(item, ElementCategoryConstantExpr);
+}
+
 export interface IntConstant extends AstNode {
-    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent;
+    readonly $container: BinExpr | Effect | SelectStep | ThisConstant | TriggerEvent;
     readonly $type: 'IntConstant';
-    value: Expr;
+    value: IntConstantExpr;
 }
 
 export const IntConstant = 'IntConstant';
 
 export function isIntConstant(item: unknown): item is IntConstant {
     return reflection.isInstance(item, IntConstant);
+}
+
+export interface IntConstantExpr extends AstNode {
+    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent;
+    readonly $type: 'IntConstantExpr';
+    rawValue: number;
+}
+
+export const IntConstantExpr = 'IntConstantExpr';
+
+export function isIntConstantExpr(item: unknown): item is IntConstantExpr {
+    return reflection.isInstance(item, IntConstantExpr);
 }
 
 export interface Model extends AstNode {
@@ -306,15 +341,27 @@ export function isModel(item: unknown): item is Model {
 }
 
 export interface MonsterTraitConstant extends AstNode {
-    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent;
+    readonly $container: BinExpr | Effect | SelectStep | ThisConstant | TriggerEvent;
     readonly $type: 'MonsterTraitConstant';
-    value: MonsterTrait;
+    value: MonsterTraitConstantExpr;
 }
 
 export const MonsterTraitConstant = 'MonsterTraitConstant';
 
 export function isMonsterTraitConstant(item: unknown): item is MonsterTraitConstant {
     return reflection.isInstance(item, MonsterTraitConstant);
+}
+
+export interface MonsterTraitConstantExpr extends AstNode {
+    readonly $container: MonsterTraitConstant;
+    readonly $type: 'MonsterTraitConstantExpr';
+    rawValue: MonsterTrait;
+}
+
+export const MonsterTraitConstantExpr = 'MonsterTraitConstantExpr';
+
+export function isMonsterTraitConstantExpr(item: unknown): item is MonsterTraitConstantExpr {
+    return reflection.isInstance(item, MonsterTraitConstantExpr);
 }
 
 export interface SelectStep extends AstNode {
@@ -333,7 +380,7 @@ export function isSelectStep(item: unknown): item is SelectStep {
 }
 
 export interface ThisConstant extends AstNode {
-    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent;
+    readonly $container: BinExpr | Effect | SelectStep | ThisConstant | TriggerEvent;
     readonly $type: 'ThisConstant';
     value: Expr;
 }
@@ -374,12 +421,11 @@ export function isTriggerEvent(item: unknown): item is TriggerEvent {
 }
 
 export interface Variable extends AstNode {
-    readonly $container: BinExpr | Effect | IntConstant | SelectStep | ThisConstant | TriggerEvent | Variable;
+    readonly $container: Effect | VariableExpr;
     readonly $type: 'Variable';
     index?: number;
     prop?: 'attack' | 'category' | 'hp' | 'id' | 'stars' | 'traits' | 'type';
-    ref?: Reference<VariableDecl>;
-    value?: Variable;
+    ref: Reference<VariableDecl>;
 }
 
 export const Variable = 'Variable';
@@ -399,6 +445,30 @@ export const VariableDecl = 'VariableDecl';
 
 export function isVariableDecl(item: unknown): item is VariableDecl {
     return reflection.isInstance(item, VariableDecl);
+}
+
+export interface VariableExpr extends AstNode {
+    readonly $container: VariableExpression;
+    readonly $type: 'VariableExpr';
+    rawValue: Variable;
+}
+
+export const VariableExpr = 'VariableExpr';
+
+export function isVariableExpr(item: unknown): item is VariableExpr {
+    return reflection.isInstance(item, VariableExpr);
+}
+
+export interface VariableExpression extends AstNode {
+    readonly $container: BinExpr | Effect | SelectStep | ThisConstant | TriggerEvent;
+    readonly $type: 'VariableExpression';
+    value: VariableExpr;
+}
+
+export const VariableExpression = 'VariableExpression';
+
+export function isVariableExpression(item: unknown): item is VariableExpression {
+    return reflection.isInstance(item, VariableExpression);
 }
 
 export interface MonsterCard extends BaseCard {
@@ -449,15 +519,19 @@ export type CardDslAstType = {
     BaseCard: BaseCard
     BinExpr: BinExpr
     CardTypeConstant: CardTypeConstant
+    CardTypeConstantExpr: CardTypeConstantExpr
     Condition: Condition
     Effect: Effect
     EffectStep: EffectStep
     ElementCategoryConstant: ElementCategoryConstant
+    ElementCategoryConstantExpr: ElementCategoryConstantExpr
     Expr: Expr
     IntConstant: IntConstant
+    IntConstantExpr: IntConstantExpr
     Model: Model
     MonsterCard: MonsterCard
     MonsterTraitConstant: MonsterTraitConstant
+    MonsterTraitConstantExpr: MonsterTraitConstantExpr
     SelectStep: SelectStep
     SpellCard: SpellCard
     ThisConstant: ThisConstant
@@ -466,12 +540,14 @@ export type CardDslAstType = {
     TriggerEvent: TriggerEvent
     Variable: Variable
     VariableDecl: VariableDecl
+    VariableExpr: VariableExpr
+    VariableExpression: VariableExpression
 }
 
 export class CardDslAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return [Ability, AbilityStep, ArraySize, BaseCard, BinExpr, CardTypeConstant, Condition, Effect, EffectStep, ElementCategoryConstant, Expr, IntConstant, Model, MonsterCard, MonsterTraitConstant, SelectStep, SpellCard, ThisConstant, TrapCard, TriggerCondition, TriggerEvent, Variable, VariableDecl];
+        return [Ability, AbilityStep, ArraySize, BaseCard, BinExpr, CardTypeConstant, CardTypeConstantExpr, Condition, Effect, EffectStep, ElementCategoryConstant, ElementCategoryConstantExpr, Expr, IntConstant, IntConstantExpr, Model, MonsterCard, MonsterTraitConstant, MonsterTraitConstantExpr, SelectStep, SpellCard, ThisConstant, TrapCard, TriggerCondition, TriggerEvent, Variable, VariableDecl, VariableExpr, VariableExpression];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -480,9 +556,10 @@ export class CardDslAstReflection extends AbstractAstReflection {
             case CardTypeConstant:
             case ElementCategoryConstant:
             case IntConstant:
+            case IntConstantExpr:
             case MonsterTraitConstant:
             case ThisConstant:
-            case Variable: {
+            case VariableExpression: {
                 return this.isSubtype(Expr, supertype);
             }
             case EffectStep:
@@ -569,12 +646,21 @@ export class CardDslAstReflection extends AbstractAstReflection {
                     ]
                 };
             }
+            case CardTypeConstantExpr: {
+                return {
+                    name: CardTypeConstantExpr,
+                    properties: [
+                        { name: 'rawValue' }
+                    ]
+                };
+            }
             case Effect: {
                 return {
                     name: Effect,
                     properties: [
                         { name: 'action' },
                         { name: 'amount' },
+                        { name: 'cancel' },
                         { name: 'isOpponent', defaultValue: false },
                         { name: 'newTarget' },
                         { name: 'stat' },
@@ -598,11 +684,27 @@ export class CardDslAstReflection extends AbstractAstReflection {
                     ]
                 };
             }
+            case ElementCategoryConstantExpr: {
+                return {
+                    name: ElementCategoryConstantExpr,
+                    properties: [
+                        { name: 'rawValue' }
+                    ]
+                };
+            }
             case IntConstant: {
                 return {
                     name: IntConstant,
                     properties: [
                         { name: 'value' }
+                    ]
+                };
+            }
+            case IntConstantExpr: {
+                return {
+                    name: IntConstantExpr,
+                    properties: [
+                        { name: 'rawValue' }
                     ]
                 };
             }
@@ -619,6 +721,14 @@ export class CardDslAstReflection extends AbstractAstReflection {
                     name: MonsterTraitConstant,
                     properties: [
                         { name: 'value' }
+                    ]
+                };
+            }
+            case MonsterTraitConstantExpr: {
+                return {
+                    name: MonsterTraitConstantExpr,
+                    properties: [
+                        { name: 'rawValue' }
                     ]
                 };
             }
@@ -668,8 +778,7 @@ export class CardDslAstReflection extends AbstractAstReflection {
                     properties: [
                         { name: 'index' },
                         { name: 'prop' },
-                        { name: 'ref' },
-                        { name: 'value' }
+                        { name: 'ref' }
                     ]
                 };
             }
@@ -679,6 +788,22 @@ export class CardDslAstReflection extends AbstractAstReflection {
                     properties: [
                         { name: 'name' },
                         { name: 'size' }
+                    ]
+                };
+            }
+            case VariableExpr: {
+                return {
+                    name: VariableExpr,
+                    properties: [
+                        { name: 'rawValue' }
+                    ]
+                };
+            }
+            case VariableExpression: {
+                return {
+                    name: VariableExpression,
+                    properties: [
+                        { name: 'value' }
                     ]
                 };
             }

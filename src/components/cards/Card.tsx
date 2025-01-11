@@ -1,6 +1,4 @@
-import { TrapCard } from "../../dsl/language/generated/ast";
-import { SpellCard } from "../../dsl/language/generated/ast";
-import { BaseCard, MonsterCard } from "../../dsl/language/generated/ast";
+import { BaseCard, MonsterCard, SpellCard, TrapCard } from "../../dsl/language/generated/ast";
 import { MonsterCardComponent } from "./MonsterCard";
 import { SpellCardComponent } from "./SpellCard";
 import { TrapCardComponent } from "./TrapCard";
@@ -27,7 +25,7 @@ type CardProps = {
  */
 export const Card: React.FC<CardProps> = ({ card }) => {
     return (
-        <div className="h-full w-full items-center justify-center flex">
+        <div className="overflow-y-auto">
             {isMonsterCard(card) && <MonsterCardComponent card={card} />}
             {isSpellCard(card) && <SpellCardComponent card={card} />}
             {isTrapCard(card) && <TrapCardComponent card={card} />}

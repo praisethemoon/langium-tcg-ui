@@ -1,6 +1,6 @@
 import { TriggerEvent, VariableDecl } from "../../../dsl/language/generated/ast";
-import { ConditionComponent } from "./condition";
-import { Var } from "./variable";
+import { ConditionComponent } from "./ConditionComponent";
+import { Var } from "./VariableComponent";
 
 type TriggerComponentProps = {
     trigger: TriggerEvent;
@@ -54,7 +54,7 @@ const triggerView = (trigger: TriggerEvent, variables: { [key: string]: Variable
 
         return (
             <>
-                <p className="font-mono text-sm bg-slate-50 rounded p-1.5 border border-slate-200 w-full p-1">
+                <div className="font-mono text-sm bg-slate-50 rounded p-1.5 border border-slate-200 w-full p-1">
                     <span className="text-purple-600">{triggerText}</span>
                     <span className="text-slate-600">(</span>
                     <span className="text-slate-500">eventSource=</span>
@@ -67,7 +67,7 @@ const triggerView = (trigger: TriggerEvent, variables: { [key: string]: Variable
                         </>
                     )}
                     <span className="text-slate-600">)</span>
-                </p>
+                </div>
             </>
         );
     }
@@ -90,10 +90,13 @@ const triggerView = (trigger: TriggerEvent, variables: { [key: string]: Variable
 
 export const TriggerComponent: React.FC<TriggerComponentProps> = ({ trigger, variables }) => {
     return (
-        <div className="font-mono text-sm bg-slate-50 rounded p-1.5 border border-slate-200 w-full">
+        <div className="font-mono text-sm bg-slate-50 rounded p-1.5 border border-slate-200 w-full mt-2">
             {triggerView(trigger, variables)}
             {trigger.condition != null && (
-                <ConditionComponent condition={trigger.condition} variables={variables} />
+                <div className="flex flex-col gap-2 mt-4">
+                    <text className="text-slate-500">Extra Conditions</text>
+                    <ConditionComponent condition={trigger.condition} variables={variables} />
+                </div>
             )}
         </div>
     )

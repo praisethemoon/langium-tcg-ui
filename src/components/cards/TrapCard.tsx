@@ -6,6 +6,7 @@ import spellFire from "../../assets/game/types/fire.png";
 import spellLight from "../../assets/game/types/light.png";
 import spellWater from "../../assets/game/types/water.png";
 import spellWind from "../../assets/game/types/wind.png";
+
 import { TrapCard } from "../../dsl/language/generated/ast";
 
 interface TrapCardProps {
