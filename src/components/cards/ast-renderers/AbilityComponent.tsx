@@ -1,7 +1,7 @@
 import { Ability, isEffectStep, isSelectStep, VariableDecl } from "../../../dsl/language/generated/ast.js";
 import { EffectStepComponent } from "./EffectStepComponent.js";
 import { SelectStepComponent } from "./SelectStepComponent.js";
-import { TriggerComponent } from "./trigger.js";
+import { TriggerComponent } from "./TriggerComponent.js";
 
 type MonsterAbilityComponentProps = {
     ability: Ability;

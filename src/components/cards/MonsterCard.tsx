@@ -18,7 +18,7 @@ import traitSpirit from "../../assets/game/traits/spirit.png";
 import traitUndead from "../../assets/game/traits/undead.png";
 import traitWarrior from "../../assets/game/traits/warrior.png";
 import { MonsterCard } from "../../dsl/language/generated/ast";
-import { AbilityComponent } from "./ast-renderers/ability";
+import { AbilityComponent } from "./ast-renderers/AbilityComponent";
 
 
 interface MonsterCardProps {
