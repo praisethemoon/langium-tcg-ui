@@ -61,7 +61,7 @@ const triggerView = (trigger: TriggerEvent, variables: { [key: string]: Variable
                     <Var>{trigger.target.name}</Var>
                     {trigger.attacked != null && (
                         <>
-                            <span className="text-slate-500">,</span>
+                            <span className="text-slate-500">, </span>
                             <span className="text-slate-500">attacked=</span>
                             <Var>{trigger.attacked.name}</Var>
                         </>

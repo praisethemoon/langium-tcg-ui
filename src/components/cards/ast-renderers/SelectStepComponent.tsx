@@ -40,15 +40,11 @@ const sourceToName = (source: string) => {
 
 
 export const SelectStepComponent: React.FC<SelectStepComponentProps> = ({ step, variables }) => {
-    // fill the variable map with the variables from the step
     variables["variable"] = step.variable;
-    console.log(variables);
-
     const source = step.source;
-    console.log(source);
 
     return (
-        <div className="font-mono text-sm bg-green-50 rounded p-1.5 border border-slate-200 w-full p-1">
+        <div className="font-mono text-sm bg-green-50 rounded p-1.5 border border-slate-200 w-full flex items-center overflow-x-auto">
             <Var>{step.variable.name}</Var>
             <span className="text-slate-600 px-1">=</span>
             <span className="text-purple-600">{step.auto ? "findAllCards" : "selectDialog"}</span>
@@ -56,11 +52,11 @@ export const SelectStepComponent: React.FC<SelectStepComponentProps> = ({ step, 
             <span className="text-slate-500">source=</span>
             <Var>{sourceToName(source)}</Var>
             {step.condition != null && (
-                <>
-                    <span className="text-slate-600">,</span>
+                <span className="flex items-center">
+                    <span className="text-slate-600">, </span>
                     <span className="text-slate-500">condition=</span>
                     <ConditionComponent condition={step.condition} variables={variables} />
-                </>
+                </span>
             )}
             <span className="text-slate-600">)</span>
         </div>
