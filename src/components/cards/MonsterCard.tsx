@@ -55,7 +55,7 @@ export const MonsterCardComponent: React.FC<MonsterCardProps> = ({ card }) => {
         <div className="w-full h-full flex flex-col overflow-hidden">
             <div className="w-full flex-1 overflow-y-auto px-4 py-4">
                 <div className="flex flex-col items-center gap-4 w-full">
-                    <div className="card-base bg-red-500 rounded-md shrink-0">
+                    <div className="card-base bg-red-200 rounded-md shrink-0">
                         <div className="card-header">
                             <h4 className="card-title">{card.name}</h4>
                             {card.traits.map((trait, index) => (
