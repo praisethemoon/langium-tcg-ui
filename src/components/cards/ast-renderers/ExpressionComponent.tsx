@@ -115,7 +115,6 @@ export const ExpressionComponent: React.FC<ExpressionComponentProps> = ({ expr, 
     // Handle constants and variables
     let content = "";
     let icon: JSX.Element | undefined;
-    console.log("expr:", expr);
     if(isIntConstant(expr)) {
         content = expr.value.rawValue.toString();
     } else if (isVariableExpression(expr)) {

@@ -3,7 +3,7 @@ import { ExpressionComponent, getVariableName } from "./ExpressionComponent";
 import { Var } from "./VariableComponent";
 
 type EffectStepComponentProps = {
-    step: EffectStep;
+    step: EffectStep | undefined;
     variables: { [key: string]: VariableDecl | undefined };
 };
 
@@ -89,8 +89,6 @@ const DrawOrDiscardEffect: React.FC<{ effect: Effect, variables: { [key: string]
 
 const GainOrLooseEffect: React.FC<{ effect: Effect, variables: { [key: string]: VariableDecl | undefined } }> = ({ effect, variables }) => {
     const isOpponent = effect.isOpponent;
-    const amount = effect.amount as IntConstant;
-    console.log("amount", amount);
 
     return <>
         <span className="text-purple-600">{effect.action == "gain" ? "gainLife" : "looseLife"}</span>
@@ -99,16 +97,21 @@ const GainOrLooseEffect: React.FC<{ effect: Effect, variables: { [key: string]: 
         <span className="text-purple-600"><Var>{isOpponent ? "opponent" : "player"}</Var></span>
         <span className="text-slate-600">, </span>
         <span className="text-slate-500">amount=</span>
-        <span className="text-purple-600"><Var>{amount.value.rawValue}</Var></span>
+        <span className="text-purple-600">{
+            typeof effect.amount == "number" ? effect.amount : <ExpressionComponent expr={effect.amount!} idCounter={0} variables={variables} />
+        }</span>
         <span className="text-slate-600">)</span>
     </>
 }
 
 export const EffectStepComponent: React.FC<EffectStepComponentProps> = ({ step, variables }) => {
-    const effect: Effect = step.effect;
+    if(!step) return <p className="font-mono text-sm text-purple-600">??</p>;
+
+    const effect: Effect | undefined = step.effect;
+    if(!effect) return <p className="font-mono text-sm text-purple-600">??</p>;
 
     return (
-        <div className="text-sm bg-red-50 rounded p-1.5 border border-slate-200 w-full mt-2">
+        <div className="font-mono text-sm bg-red-50 rounded p-1.5 border border-slate-200 w-full mt-2 text-slate-600">
             {((effect.action == "cancel") && (effect.cancel == "attack")) && <TextOnlyEffect name="cancelAttack" />}
             {((effect.action == "cancel") && (effect.cancel == "effect")) && <TextOnlyEffect name="cancelEffect" />}
             {(effect.action == "change") && <ChangeTargetEffect effect={effect} variables={variables} />}

@@ -12,13 +12,9 @@ function App() {
     const [validated, setValidated] = useState(false);
 
     const onChange = (change: DocumentChange) => {
-        console.log("Editor content changed:", change);
         setCards([JSON.parse(change.content[0])]);
 
         const hasErrors = (change.diagnostics.some(d => d.severity === 1) && (change.diagnostics.length > 0));
-        console.log("hasErrors:", hasErrors);
-        console.log("state:", change.state);
-        console.log("validated:", (change.state == DocumentState.Validated) && !hasErrors);
         setValidated(
             (change.state == DocumentState.Validated) && !hasErrors
         );
@@ -34,8 +30,8 @@ function App() {
                 }} style={{ width: "100%", height: "100%" }} />
                 <Allotment vertical={true}>
                     <div className="h-full w-full overflow-y-auto p-4">
-                        {!validated && <QuestionableCard />}
-                        {validated && <Card card={cards[0]} />}
+                        {cards.length==0 && <QuestionableCard />}
+                        {cards.length>0 && <Card card={cards[0]} />}
                     </div>
                 </Allotment>
             </Allotment>

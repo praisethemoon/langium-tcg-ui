@@ -30,7 +30,6 @@ export const configureWorker = (): LanguageClientConfig => {
         type: 'module',
         name: 'CardDsl Language Server'
     });
-    console.log(new URL('./language/main-browser', import.meta.url));
 
     return {
         options: {

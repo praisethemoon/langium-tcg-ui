@@ -45,7 +45,10 @@ export const SelectStepComponent: React.FC<SelectStepComponentProps> = ({ step, 
 
     return (
         <div className="font-mono text-sm bg-green-50 rounded p-1.5 border border-slate-200 w-full flex items-center overflow-x-auto">
-            <Var>{step.variable.name}</Var>
+            <Var>
+                {step.variable.name}
+                {step.variable.size != null && <Var>[{step.variable.size.op}{step.variable.size.value}]</Var>}
+            </Var>
             <span className="text-slate-600 px-1">=</span>
             <span className="text-purple-600">{step.auto ? "findAllCards" : "selectDialog"}</span>
             <span className="text-slate-600">(</span>

@@ -20,12 +20,11 @@ import traitWarrior from "../../assets/game/traits/warrior.png";
 import { MonsterCard } from "../../dsl/language/generated/ast";
 import { AbilityComponent } from "./ast-renderers/AbilityComponent";
 
-
 interface MonsterCardProps {
     card: MonsterCard;
 }
 
-const typeIcons: Record<string, string> = {
+export const typeIcons: Record<string, string> = {
     dark: typeDark,
     earth: typeEarth,
     fire: typeFire,
@@ -34,7 +33,7 @@ const typeIcons: Record<string, string> = {
     wind: typeWind,
 };
 
-const traitIcons: Record<string, string> = {
+export const traitIcons: Record<string, string> = {
     beast: traitBeast,
     construct: traitConstruct,
     demon: traitDemon,
